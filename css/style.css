@@ -135,6 +135,12 @@ button {
     margin-left: 0;
 }
 
+#cancel {
+    width: 80%;
+    height: 18%;
+    margin-left: 20%;
+}
+
 .symbols {
     width: 80%;
     height: 18%;

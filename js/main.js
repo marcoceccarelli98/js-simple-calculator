@@ -2,59 +2,40 @@
 //-------------------
 //Element Declaration
 //-------------------
+
 //Screen
 const screen = document.querySelector('.screen-num');
+const numbersBtn = document.querySelectorAll('.numbers');
+const signsBtn = document.querySelectorAll('.symbols');
+const equalSign = document.getElementById('equal');
+const cancelButton = document.getElementById('cancel');
 
-//Number Buttons
-// const btn0 = document.getElementById('zero');
-// const btn1 = document.getElementById('one');
-// const btn2 = document.getElementById('two');
-// const btn3 = document.getElementById('three');
-// const btn4 = document.getElementById('four');
-// const btn5 = document.getElementById('five');
-// const btn6 = document.getElementById('six');
-// const btn7 = document.getElementById('seven');
-// const btn8 = document.getElementById('eight');
-// const btn9 = document.getElementById('nine');
-
-//Operation Buttons
-// const btnEqual = document.getElementById('equal');
-// const btnPlus = document.getElementById('plus');
-// const btnMinus = document.getElementById('minus');
-// const btnMulti = document.getElementById('multi');
-// const btnDivide = document.getElementById('divide');
-// const btnCancel = document.getElementById('cancel');
 
 // ----
 // MAIN
 // ----
 
-let tempNum = 0;
-let firstNum = 0;
-let tempSign = ''
-let tempScreen = '';
+let tempNum = '';
+let fullNum = '';
+let tempSign = '';
+let memFirstNum = 0;
 let result = 0;
 
 // --- NUMBERS ---
-
-const numbersBtn = document.querySelectorAll('.numbers');
 
 for (let i = 0; i < numbersBtn.length; i++) {
     //add click event listener to all numbers
     numbersBtn[i].addEventListener("click", function () {
         //get number from innerHTML
         tempNum = numbersBtn[i].innerHTML;
-        //reset screen
-        tempScreen = '';
+        //concatenate number to get multiple digit numbers
+        fullNum += tempNum;
         //add number to screen
-        tempScreen += tempNum;
-        screen.innerHTML = tempScreen;
+        screen.innerHTML = fullNum;
     });
 }
 
 // --- SIGNS ---
-
-const signsBtn = document.querySelectorAll('.symbols');
 
 for (let i = 0; i < signsBtn.length; i++) {
     //add click event listener to all signs
@@ -76,47 +57,63 @@ for (let i = 0; i < signsBtn.length; i++) {
             case 'equal':
                 tempSign = 'equal';
                 break;
-            case 'cancel':
-                tempSign = 'cancel';
-                break;
         }
 
         //save previus num to first num
-        firstNum = tempNum;
-
+        memFirstNum = fullNum;
+        //reset temp number
+        fullNum = '';
         //reset screen
-        tempScreen = '0';
-        screen.innerHTML = tempScreen;
+        screen.innerHTML = '';
     });
 }
 
 // --- EQUAL ---
 
-const equalSign = document.getElementById('equal');
-
 //choice the operation to do
 equalSign.addEventListener("click", function () {
     switch (tempSign) {
         case 'plus':
-            result = sum(firstNum, tempNum);
+            result = sum(memFirstNum, fullNum);
             break;
         case 'minus':
-            result = min(firstNum, tempNum);
+            result = min(memFirstNum, fullNum);
             break;
         case 'multi':
-            result = mul(firstNum, tempNum);
+            result = mul(memFirstNum, fullNum);
             break;
         case 'divide':
-            result = div(firstNum, tempNum);
+            result = div(memFirstNum, fullNum);
             break;
     }
 
-    //print result on screen
-    tempScreen = result;
+    //check if user trying to divide a number by 0
+    if (fullNum == 0 && tempSign == 'divide') {
+        screen.innerHTML = 'Err';
+    } else {
+        //print result on screen
+        screen.innerHTML = result;
+    }
+    //reset sign
+    tempSign = '';
     //set temp num as result to get ready for another count
-    tempNum = result;
-    screen.innerHTML = tempScreen;
+    fullNum = result;
 });
+
+// --- CANCEL ---
+
+cancelButton.addEventListener("click", function () {
+    tempSign = '';
+    tempNum = '';
+    fullNum = '';
+    memFirstNum = 0;
+    result = 0;
+    screen.innerHTML = '';
+});
+
+
+
+
 
 // ---------
 // FUNCTIONS
@@ -135,5 +132,5 @@ function mul(num1, num2) {
 }
 
 function div(num1, num2) {
-    return Number(num1) / Number(num2);
+    return Math.round(Number(num1) / Number(num2) * 1000) / 1000;
 }
