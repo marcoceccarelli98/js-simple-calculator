@@ -29,14 +29,14 @@ const screen = document.querySelector('.screen-num');
 // MAIN
 // ----
 
+let tempNum = 0;
+let firstNum = 0;
+let tempSign = ''
+let tempScreen = '';
+
 // --- NUMBERS ---
 
 const numbersBtn = document.querySelectorAll('.numbers');
-
-let tempNum = 0;
-let tempFirstNum = 0;
-let tempSign = ''
-let tempScreen = '';
 
 for (let i = 0; i < numbersBtn.length; i++) {
     //add click event listener to all numbers
@@ -51,7 +51,45 @@ for (let i = 0; i < numbersBtn.length; i++) {
     });
 }
 
+// --- SIGNS ---
+
+const signsBtn = document.querySelectorAll('.symbols');
+
+for (let i = 0; i < signsBtn.length; i++) {
+    //add click event listener to all signs
+    signsBtn[i].addEventListener("click", function () {
+
+        switch (signsBtn[i].id) {
+            case 'plus':
+                tempSign = 'plus';
+                break;
+            case 'minus':
+                tempSign = 'minus';
+                break;
+            case 'multi':
+                tempSign = 'multi';
+                break;
+            case 'divide':
+                tempSign = 'divide';
+                break;
+            case 'equal':
+                tempSign = 'equal';
+                break;
+            case 'cancel':
+                tempSign = 'cancel';
+                break;
+        }
+
+        //save previus num to first num
+        firstNum = tempNum;
+
+        //reset screen
+        tempScreen = '0';
+        screen.innerHTML = tempScreen;
+    });
+}
 
 // ---------
 // FUNCTIONS
 // ---------
+
