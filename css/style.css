@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Eurostile;
+    src: url(../font/eurostile.TTF);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.d-flex {
+    display: flex;
+    width: 100%;
+    height: 700px;
+    align-content: space-between;
+}
+
+.d-flex-vertical {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.text-white {
+    color: white;
+}
+
+.bg-orange {
+    background-color: orange;
+}
+
+.bg-blue {
+    background-color: #77A8B0;
+}
+
+/* CALCULATOR BASE */
+.calculator {
+    border-radius: 15px;
+    height: 500px;
+    width: 320px;
+    /* background-color: lightgrey; */
+    background: rgb(201, 199, 199);
+    background: linear-gradient(90deg, rgba(201, 199, 199, 1) 0%, rgba(232, 229, 229, 1) 44%);
+}
+
+/* CALCULATOR LAYOUT */
+/* NAME */
+.name-label {
+    height: 19%;
+    text-align: center;
+}
+
+.name {
+    font-family: Eurostile;
+    font-size: 40px;
+    line-height: 95px;
+}
+
+/* SCREEN */
+.screen-label {
+    height: 18%;
+    background-color: black;
+    text-align: right;
+    padding-right: 30px;
+}
+
+.screen-num {
+    line-height: 90px;
+    color: rgb(0, 255, 195);
+    font-size: 50px;
+    font-family: 'Seven Segment', sans-serif;
+}
+
+/* BUTTONS LAYOUT */
+.btn-label {
+    border-radius: 20px;
+    height: 62%;
+    /* background-color: lightgray; */
+}
+
+.container-btn {
+    height: 90%;
+    width: 90%;
+    /* background-color: blueviolet; */
+}
+
+.col-numpad {
+    width: 75%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* background-color: red; */
+}
+
+.col-signpad {
+    width: 25%;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+/* BUTTONS */
+
+button {
+    font-family: Eurostile;
+    font-size: 30px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: -2px 2px gray;
+}
+
+.numbers {
+    width: 30%;
+    height: 22%;
+}
+
+#equal {
+    width: 30%;
+    height: 22%;
+    margin-left: 0;
+}
+
+.symbols {
+    width: 80%;
+    height: 18%;
+    margin-left: 20%;
+}
+
+/* ZERO 0 */
+#zero {
+    width: 65%;
+}
+
+/* X */
+#x {
+    font-size: 20px;
+}
