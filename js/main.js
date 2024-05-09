@@ -33,6 +33,7 @@ let tempNum = 0;
 let firstNum = 0;
 let tempSign = ''
 let tempScreen = '';
+let result = 0;
 
 // --- NUMBERS ---
 
@@ -89,7 +90,50 @@ for (let i = 0; i < signsBtn.length; i++) {
     });
 }
 
+// --- EQUAL ---
+
+const equalSign = document.getElementById('equal');
+
+//choice the operation to do
+equalSign.addEventListener("click", function () {
+    switch (tempSign) {
+        case 'plus':
+            result = sum(firstNum, tempNum);
+            break;
+        case 'minus':
+            result = min(firstNum, tempNum);
+            break;
+        case 'multi':
+            result = mul(firstNum, tempNum);
+            break;
+        case 'divide':
+            result = div(firstNum, tempNum);
+            break;
+    }
+
+    //print result on screen
+    tempScreen = result;
+    //set temp num as result to get ready for another count
+    tempNum = result;
+    screen.innerHTML = tempScreen;
+});
+
 // ---------
 // FUNCTIONS
 // ---------
 
+function sum(num1, num2) {
+    return Number(num1) + Number(num2);
+}
+
+function min(num1, num2) {
+    return Number(num1) - Number(num2);
+}
+
+function mul(num1, num2) {
+    return Number(num1) * Number(num2);
+}
+
+function div(num1, num2) {
+    return Number(num1) / Number(num2);
+}
